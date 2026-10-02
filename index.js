@@ -1482,6 +1482,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.appendChild(bouncingPng);
             }
 
+            // Imagem de fundo do verso da carta (definida na pasta ui/)
+            const cardBackImage = 'ui/carta_verso.png';
+
             // Criar as cartas
             gameCards.forEach((imgSrc, index) => {
                 const card = document.createElement('div');
@@ -1489,7 +1492,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.cssText = `
                     width: 200px;
                     height: 300px;
-                    background: linear-gradient(45deg, #ff69b4, #ff1493);
+                    background: transparent;
                     border-radius: 10px;
                     display: flex;
                     justify-content: center;
@@ -1503,28 +1506,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
 
                 const front = document.createElement('div');
+                front.className = 'memory-card-front';
                 front.style.cssText = `
                     position: absolute;
                     width: 100%;
                     height: 100%;
                     backface-visibility: hidden;
-                    background: linear-gradient(45deg, #ff69b4, #ff1493);
+                    background: url('${cardBackImage}') center / cover no-repeat;
+                    background-color: transparent;
                     border-radius: 10px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    overflow: hidden;
                 `;
-
-                // Adicionar coração na parte de trás
-                const heart = document.createElement('div');
-                heart.textContent = '❤️';
-                heart.style.cssText = `
-                    position: absolute;
-                    font-size: 50px;
-                    color: rgba(255, 255, 255, 255);
-                    user-select: none;
-                `;
-                front.appendChild(heart);
 
                 const back = document.createElement('div');
                 back.style.cssText = `
@@ -1533,6 +1529,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     height: 100%;
                     backface-visibility: hidden;
                     border-radius: 10px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -1640,25 +1637,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 const midY = rect.top + rect.height / 2;
                 const mobileLandscape = window.matchMedia('(max-width: 1024px) and (orientation: landscape)').matches;
 
-                // A imagem e' alta e estreita (proporcao natural preservada), entao em vez
-                // de fixar a largura e deixar a altura estourar a tela, derivamos a
-                // largura maxima que ainda faz a boneca inteira caber na altura util.
                 const verticalMargin = 24;
+                const sideMargin = mobileLandscape ? 6 : 12;
                 const natW = karenImg.naturalWidth || 448;
                 const natH = karenImg.naturalHeight || 1536;
                 const aspect = natW / natH; // largura / altura
+
+                // Limite 1: altura util da tela. A imagem e' alta e estreita, entao
+                // derivamos a largura que ainda faz a boneca inteira caber.
                 const maxH = Math.max(140, window.innerHeight - verticalMargin * 2);
-                const finalW = Math.min(karenBaseWidth, maxH * aspect);
+                const widthByHeight = Math.min(karenBaseWidth, maxH * aspect);
+
+                // Limite 2: espaco livre a direita das cartas. O rect do grid NAO serve:
+                // as cartas (200px fixos) estouram a caixa do grid (max-width 900px), entao
+                // medimos a borda direita real das cartas para nao posicionar em cima delas.
+                let cardsRight = rect.right;
+                memoryGame.querySelectorAll('.memory-card').forEach((c) => {
+                    const r = c.getBoundingClientRect();
+                    if (r.right > cardsRight) cardsRight = r.right;
+                });
+                const freeW = window.innerWidth - cardsRight - sideMargin * 2;
+
+                // Encolhe a boneca para caber no espaco livre. Se a sobra for minima
+                // (telas medias, onde as cartas de 1300px dominam), manter um tamanho
+                // legivel e aceitar a sobreposicao e' melhor que virar um ponto.
+                const minW = 90;
+                const finalW = freeW >= minW ? Math.min(widthByHeight, freeW) : widthByHeight;
                 karenImg.style.width = finalW + 'px';
                 const imgH = finalW / aspect;
 
-                // Fixa no canto direito, sempre dentro da tela. Quando sobra espaco entre
-                // o grid de cartas e a borda, usa esse espaco para nao cobrir as cartas;
-                // se nao couber, encosta na borda (preferivel a ser cortada).
-                const sideMargin = mobileLandscape ? 6 : 12;
-                const roomOnRight = window.innerWidth - rect.right - finalW;
                 karenImg.style.left = 'auto';
-                karenImg.style.right = (roomOnRight >= 0 ? roomOnRight : sideMargin) + 'px';
+                karenImg.style.right = sideMargin + 'px';
                 const top = Math.max(verticalMargin, Math.min(window.innerHeight - imgH - verticalMargin, midY - imgH / 2));
                 karenImg.style.top = top + 'px';
 
