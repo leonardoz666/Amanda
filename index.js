@@ -1652,9 +1652,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 karenImg.style.width = finalW + 'px';
                 const imgH = finalW / aspect;
 
-                // Fixa no canto direito com margem
+                // Fixa no canto direito, sempre dentro da tela. Quando sobra espaco entre
+                // o grid de cartas e a borda, usa esse espaco para nao cobrir as cartas;
+                // se nao couber, encosta na borda (preferivel a ser cortada).
+                const sideMargin = mobileLandscape ? 6 : 12;
+                const roomOnRight = window.innerWidth - rect.right - finalW;
                 karenImg.style.left = 'auto';
-                karenImg.style.right = mobileLandscape ? '-18px' : '-60px';
+                karenImg.style.right = (roomOnRight >= 0 ? roomOnRight : sideMargin) + 'px';
                 const top = Math.max(verticalMargin, Math.min(window.innerHeight - imgH - verticalMargin, midY - imgH / 2));
                 karenImg.style.top = top + 'px';
 
