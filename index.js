@@ -1578,7 +1578,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             if (matchedPairs === gameCards.length / 2) {
                                 setTimeout(() => {
-                                    uiComponents.createModernAlert('❤️ Você completou o jogo das partes que eu amo em você ❤️', () => {
+                                    uiComponents.createModernAlert('❤️ Você é um espetáculo! ❤️', () => {
                                         // Criar o PNG "duvida" apenas após clicar OK na mensagem
                                         createBouncingPngAfterMemory();
                                     });
