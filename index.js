@@ -2898,7 +2898,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const display = document.createElement('div');
         display.className = 'pin-display';
         const dots = [];
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < 4; i++) {
             const d = document.createElement('span');
             d.className = 'dot';
             display.appendChild(d);
@@ -2977,14 +2977,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         } catch (_) { }
                     }
 
-                    if (pressed < 8) {
+                    if (pressed < 4) {
                         buffer += k;
-                        pressed = Math.min(8, pressed + 1);
+                        pressed = Math.min(4, pressed + 1);
                         updateDots();
                     }
-                    if (pressed === 8) {
+                    if (pressed === 4) {
                         setTimeout(() => {
-                            if (buffer === '28082007') {
+                            if (buffer === '0210') {
                                 // voltar mãos ao normal
                                 try {
                                     handL.classList.remove('password-focused');
