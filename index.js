@@ -173,7 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <div style="display: flex; align-items: center; gap: 8px; width: 100%; min-width: 0;">
                 <img src="music/capa.jpg" style="width: 34px; height: 34px; border-radius: 6px; object-fit: cover; flex: 0 0 auto;">
                 <div style="min-width: 0; flex: 1;">
-                    <div style="font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Como Nossos Pais</div>
+                    <div style="font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Moon</div>
+                    <div style="font-size: 9px; color: #cfcfcf; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kanye west</div>
                 </div>
             </div>
         ` : `
@@ -193,8 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     place-items: center;
                 ">⏸</button>
                 <div style="min-width: 0; flex: 1;">
-                    <div style="font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Como Nossos Pais</div>
-                    <div style="font-size: 9px; color: #cfcfcf; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Elis Regina</div>
+                    <div style="font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Moon</div>
+                    <div style="font-size: 9px; color: #cfcfcf; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kanye west</div>
                 </div>
             </div>
             <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px; width: 100%; min-width: 0;">
