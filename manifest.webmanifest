@@ -1,12 +1,12 @@
 {
-  "name": "Para Noemi",
-  "short_name": "Noemi",
+  "name": "Para Amanda",
+  "short_name": "Amanda",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "description": "Aplicativo com a experiencia romantica Para Noemi.",
+  "description": "Aplicativo com a experiencia romantica Para Amanda.",
   "icons": [
     {
       "src": "ui/Botao.png",

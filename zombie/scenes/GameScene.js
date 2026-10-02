@@ -762,13 +762,13 @@ export class GameScene extends Phaser.Scene {
 
     // Helper functions from KAPLAY version
     generateEnvironmentPositions() {
-        // Position NOEMI letters above the player's initial spawn position (screen center)
+        // Position AMANDA letters above the player's initial spawn position (screen center)
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
         const textY = centerY - 200 * GAME_CONFIG.GLOBAL_SCALE;
 
-        // Calculate centered start position for "NOEMI" (5 letters with 80px each + 4 gaps of 80px = 720px total)
-        const totalTextWidth = 5 * 80 + 4 * 80; // 720px
+        // Calculate centered start position for "AMANDA" (6 letters with 80px each + 5 gaps of 80px = 880px total)
+        const totalTextWidth = 6 * 80 + 5 * 80; // 880px
         const startX = centerX - (totalTextWidth / 2) * GAME_CONFIG.GLOBAL_SCALE;
 
         // Helper function to scale text positions
@@ -778,46 +778,61 @@ export class GameScene extends Phaser.Scene {
         const letterSpacing = 160; // 80px letter + 80px gap
 
         const wallPositions = [
-            // Letter "N" (first letter)
+            // Letter "A" (first letter)
+            // Top of the letter
+            { x: startX + s(20), y: textY }, { x: startX + s(40), y: textY }, { x: startX + s(60), y: textY },
+            // Crossbar
+            { x: startX + s(0), y: textY + s(60) }, { x: startX + s(20), y: textY + s(60) }, { x: startX + s(40), y: textY + s(60) }, { x: startX + s(60), y: textY + s(60) }, { x: startX + s(80), y: textY + s(60) },
+            // Left leg
+            { x: startX + s(0), y: textY + s(20) }, { x: startX + s(0), y: textY + s(40) }, { x: startX + s(0), y: textY + s(80) }, { x: startX + s(0), y: textY + s(100) }, { x: startX + s(0), y: textY + s(120) },
+            // Right leg
+            { x: startX + s(80), y: textY + s(20) }, { x: startX + s(80), y: textY + s(40) }, { x: startX + s(80), y: textY + s(80) }, { x: startX + s(80), y: textY + s(100) }, { x: startX + s(80), y: textY + s(120) },
+
+            // Letter "M" (second letter)
             // Left vertical
-            { x: startX + s(0), y: textY }, { x: startX + s(0), y: textY + s(20) }, { x: startX + s(0), y: textY + s(40) }, { x: startX + s(0), y: textY + s(60) }, { x: startX + s(0), y: textY + s(80) }, { x: startX + s(0), y: textY + s(100) }, { x: startX + s(0), y: textY + s(120) },
+            { x: startX + s(letterSpacing + 0), y: textY }, { x: startX + s(letterSpacing + 0), y: textY + s(20) }, { x: startX + s(letterSpacing + 0), y: textY + s(40) }, { x: startX + s(letterSpacing + 0), y: textY + s(60) }, { x: startX + s(letterSpacing + 0), y: textY + s(80) }, { x: startX + s(letterSpacing + 0), y: textY + s(100) }, { x: startX + s(letterSpacing + 0), y: textY + s(120) },
             // Right vertical
-            { x: startX + s(80), y: textY }, { x: startX + s(80), y: textY + s(20) }, { x: startX + s(80), y: textY + s(40) }, { x: startX + s(80), y: textY + s(60) }, { x: startX + s(80), y: textY + s(80) }, { x: startX + s(80), y: textY + s(100) }, { x: startX + s(80), y: textY + s(120) },
-            // Diagonal connecting left-top to right-bottom
-            { x: startX + s(20), y: textY + s(20) }, { x: startX + s(40), y: textY + s(60) }, { x: startX + s(60), y: textY + s(100) },
+            { x: startX + s(letterSpacing + 80), y: textY }, { x: startX + s(letterSpacing + 80), y: textY + s(20) }, { x: startX + s(letterSpacing + 80), y: textY + s(40) }, { x: startX + s(letterSpacing + 80), y: textY + s(60) }, { x: startX + s(letterSpacing + 80), y: textY + s(80) }, { x: startX + s(letterSpacing + 80), y: textY + s(100) }, { x: startX + s(letterSpacing + 80), y: textY + s(120) },
+            // Middle diagonal
+            { x: startX + s(letterSpacing + 20), y: textY + s(20) }, { x: startX + s(letterSpacing + 40), y: textY + s(40) }, { x: startX + s(letterSpacing + 60), y: textY + s(20) },
 
-            // Letter "O" (second letter)
-            // Left vertical
-            { x: startX + s(letterSpacing + 0), y: textY + s(20) }, { x: startX + s(letterSpacing + 0), y: textY + s(40) }, { x: startX + s(letterSpacing + 0), y: textY + s(60) }, { x: startX + s(letterSpacing + 0), y: textY + s(80) }, { x: startX + s(letterSpacing + 0), y: textY + s(100) },
-            // Right vertical
-            { x: startX + s(letterSpacing + 80), y: textY + s(20) }, { x: startX + s(letterSpacing + 80), y: textY + s(40) }, { x: startX + s(letterSpacing + 80), y: textY + s(60) }, { x: startX + s(letterSpacing + 80), y: textY + s(80) }, { x: startX + s(letterSpacing + 80), y: textY + s(100) },
-            // Top horizontal
-            { x: startX + s(letterSpacing + 20), y: textY }, { x: startX + s(letterSpacing + 40), y: textY }, { x: startX + s(letterSpacing + 60), y: textY },
-            // Bottom horizontal
-            { x: startX + s(letterSpacing + 20), y: textY + s(120) }, { x: startX + s(letterSpacing + 40), y: textY + s(120) }, { x: startX + s(letterSpacing + 60), y: textY + s(120) },
+            // Letter "A" (third letter)
+            // Top of the letter
+            { x: startX + s(2 * letterSpacing + 20), y: textY }, { x: startX + s(2 * letterSpacing + 40), y: textY }, { x: startX + s(2 * letterSpacing + 60), y: textY },
+            // Crossbar
+            { x: startX + s(2 * letterSpacing + 0), y: textY + s(60) }, { x: startX + s(2 * letterSpacing + 20), y: textY + s(60) }, { x: startX + s(2 * letterSpacing + 40), y: textY + s(60) }, { x: startX + s(2 * letterSpacing + 60), y: textY + s(60) }, { x: startX + s(2 * letterSpacing + 80), y: textY + s(60) },
+            // Left leg
+            { x: startX + s(2 * letterSpacing + 0), y: textY + s(20) }, { x: startX + s(2 * letterSpacing + 0), y: textY + s(40) }, { x: startX + s(2 * letterSpacing + 0), y: textY + s(80) }, { x: startX + s(2 * letterSpacing + 0), y: textY + s(100) }, { x: startX + s(2 * letterSpacing + 0), y: textY + s(120) },
+            // Right leg
+            { x: startX + s(2 * letterSpacing + 80), y: textY + s(20) }, { x: startX + s(2 * letterSpacing + 80), y: textY + s(40) }, { x: startX + s(2 * letterSpacing + 80), y: textY + s(80) }, { x: startX + s(2 * letterSpacing + 80), y: textY + s(100) }, { x: startX + s(2 * letterSpacing + 80), y: textY + s(120) },
 
-            // Letter "E" (third letter)
-            { x: startX + s(2 * letterSpacing + 0), y: textY }, { x: startX + s(2 * letterSpacing + 20), y: textY }, { x: startX + s(2 * letterSpacing + 40), y: textY }, { x: startX + s(2 * letterSpacing + 60), y: textY }, { x: startX + s(2 * letterSpacing + 80), y: textY },
-            { x: startX + s(2 * letterSpacing + 0), y: textY + s(20) }, { x: startX + s(2 * letterSpacing + 0), y: textY + s(40) },
-            { x: startX + s(2 * letterSpacing + 0), y: textY + s(60) }, { x: startX + s(2 * letterSpacing + 20), y: textY + s(60) }, { x: startX + s(2 * letterSpacing + 40), y: textY + s(60) }, { x: startX + s(2 * letterSpacing + 60), y: textY + s(60) },
-            { x: startX + s(2 * letterSpacing + 0), y: textY + s(80) }, { x: startX + s(2 * letterSpacing + 0), y: textY + s(100) },
-            { x: startX + s(2 * letterSpacing + 0), y: textY + s(120) }, { x: startX + s(2 * letterSpacing + 20), y: textY + s(120) }, { x: startX + s(2 * letterSpacing + 40), y: textY + s(120) }, { x: startX + s(2 * letterSpacing + 60), y: textY + s(120) }, { x: startX + s(2 * letterSpacing + 80), y: textY + s(120) },
-
-            // Letter "M" (fourth letter)
+            // Letter "N" (fourth letter)
             // Left vertical
             { x: startX + s(3 * letterSpacing + 0), y: textY }, { x: startX + s(3 * letterSpacing + 0), y: textY + s(20) }, { x: startX + s(3 * letterSpacing + 0), y: textY + s(40) }, { x: startX + s(3 * letterSpacing + 0), y: textY + s(60) }, { x: startX + s(3 * letterSpacing + 0), y: textY + s(80) }, { x: startX + s(3 * letterSpacing + 0), y: textY + s(100) }, { x: startX + s(3 * letterSpacing + 0), y: textY + s(120) },
             // Right vertical
             { x: startX + s(3 * letterSpacing + 80), y: textY }, { x: startX + s(3 * letterSpacing + 80), y: textY + s(20) }, { x: startX + s(3 * letterSpacing + 80), y: textY + s(40) }, { x: startX + s(3 * letterSpacing + 80), y: textY + s(60) }, { x: startX + s(3 * letterSpacing + 80), y: textY + s(80) }, { x: startX + s(3 * letterSpacing + 80), y: textY + s(100) }, { x: startX + s(3 * letterSpacing + 80), y: textY + s(120) },
-            // Middle diagonal
-            { x: startX + s(3 * letterSpacing + 20), y: textY + s(20) }, { x: startX + s(3 * letterSpacing + 40), y: textY + s(40) }, { x: startX + s(3 * letterSpacing + 60), y: textY + s(20) },
+            // Diagonal connecting left-top to right-bottom
+            { x: startX + s(3 * letterSpacing + 20), y: textY + s(20) }, { x: startX + s(3 * letterSpacing + 40), y: textY + s(60) }, { x: startX + s(3 * letterSpacing + 60), y: textY + s(100) },
 
-            // Letter "I" (fifth letter)
+            // Letter "D" (fifth letter)
+            // Left vertical
+            { x: startX + s(4 * letterSpacing + 0), y: textY }, { x: startX + s(4 * letterSpacing + 0), y: textY + s(20) }, { x: startX + s(4 * letterSpacing + 0), y: textY + s(40) }, { x: startX + s(4 * letterSpacing + 0), y: textY + s(60) }, { x: startX + s(4 * letterSpacing + 0), y: textY + s(80) }, { x: startX + s(4 * letterSpacing + 0), y: textY + s(100) }, { x: startX + s(4 * letterSpacing + 0), y: textY + s(120) },
             // Top horizontal
-            { x: startX + s(4 * letterSpacing + 0), y: textY }, { x: startX + s(4 * letterSpacing + 20), y: textY }, { x: startX + s(4 * letterSpacing + 40), y: textY }, { x: startX + s(4 * letterSpacing + 60), y: textY }, { x: startX + s(4 * letterSpacing + 80), y: textY },
+            { x: startX + s(4 * letterSpacing + 20), y: textY }, { x: startX + s(4 * letterSpacing + 40), y: textY }, { x: startX + s(4 * letterSpacing + 60), y: textY },
+            // Right vertical
+            { x: startX + s(4 * letterSpacing + 80), y: textY + s(20) }, { x: startX + s(4 * letterSpacing + 80), y: textY + s(40) }, { x: startX + s(4 * letterSpacing + 80), y: textY + s(60) }, { x: startX + s(4 * letterSpacing + 80), y: textY + s(80) }, { x: startX + s(4 * letterSpacing + 80), y: textY + s(100) },
             // Bottom horizontal
-            { x: startX + s(4 * letterSpacing + 0), y: textY + s(120) }, { x: startX + s(4 * letterSpacing + 20), y: textY + s(120) }, { x: startX + s(4 * letterSpacing + 40), y: textY + s(120) }, { x: startX + s(4 * letterSpacing + 60), y: textY + s(120) }, { x: startX + s(4 * letterSpacing + 80), y: textY + s(120) },
-            // Middle vertical
-            { x: startX + s(4 * letterSpacing + 40), y: textY + s(20) }, { x: startX + s(4 * letterSpacing + 40), y: textY + s(40) }, { x: startX + s(4 * letterSpacing + 40), y: textY + s(60) }, { x: startX + s(4 * letterSpacing + 40), y: textY + s(80) }, { x: startX + s(4 * letterSpacing + 40), y: textY + s(100) },
+            { x: startX + s(4 * letterSpacing + 20), y: textY + s(120) }, { x: startX + s(4 * letterSpacing + 40), y: textY + s(120) }, { x: startX + s(4 * letterSpacing + 60), y: textY + s(120) },
+
+            // Letter "A" (sixth letter)
+            // Top of the letter
+            { x: startX + s(5 * letterSpacing + 20), y: textY }, { x: startX + s(5 * letterSpacing + 40), y: textY }, { x: startX + s(5 * letterSpacing + 60), y: textY },
+            // Crossbar
+            { x: startX + s(5 * letterSpacing + 0), y: textY + s(60) }, { x: startX + s(5 * letterSpacing + 20), y: textY + s(60) }, { x: startX + s(5 * letterSpacing + 40), y: textY + s(60) }, { x: startX + s(5 * letterSpacing + 60), y: textY + s(60) }, { x: startX + s(5 * letterSpacing + 80), y: textY + s(60) },
+            // Left leg
+            { x: startX + s(5 * letterSpacing + 0), y: textY + s(20) }, { x: startX + s(5 * letterSpacing + 0), y: textY + s(40) }, { x: startX + s(5 * letterSpacing + 0), y: textY + s(80) }, { x: startX + s(5 * letterSpacing + 0), y: textY + s(100) }, { x: startX + s(5 * letterSpacing + 0), y: textY + s(120) },
+            // Right leg
+            { x: startX + s(5 * letterSpacing + 80), y: textY + s(20) }, { x: startX + s(5 * letterSpacing + 80), y: textY + s(40) }, { x: startX + s(5 * letterSpacing + 80), y: textY + s(80) }, { x: startX + s(5 * letterSpacing + 80), y: textY + s(100) }, { x: startX + s(5 * letterSpacing + 80), y: textY + s(120) },
 
             // Fort structure (top-left corner)
             { x: 150, y: 150 }, { x: 170, y: 150 }, { x: 190, y: 150 }, { x: 210, y: 150 }, { x: 230, y: 150 },
@@ -899,34 +914,34 @@ export class GameScene extends Phaser.Scene {
             this.isTreePositionClear(pos, wallPositions) && !this.isInProtectedArea(pos.x, pos.y)
         );
 
-        // Filter out walls that are in protected areas (except ALEX letters themselves)
+        // Filter out walls that are in protected areas (except AMANDA letters themselves)
         const filteredWallPositions = wallPositions.filter((pos, index) => {
-            // Check if this wall is part of ALEX letters
+            // Check if this wall is part of AMANDA letters
             const screenCenterY = this.cameras.main.centerY;
-            const alexY = screenCenterY - 200 * GAME_CONFIG.GLOBAL_SCALE;
+            const amandaY = screenCenterY - 200 * GAME_CONFIG.GLOBAL_SCALE;
 
-            // ALEX letters are the first walls in the array (before other structures)
+            // AMANDA letters are the first walls in the array (before other structures)
             // They span from the beginning until we hit the "Fort structure" comment
-            const isAlexLetterWall = index < wallPositions.findIndex(wall =>
+            const isAmandaLetterWall = index < wallPositions.findIndex(wall =>
                 wall.x === 150 && wall.y === 150 // First fort wall position
             );
 
-            // Also check Y position - ALEX letters should be around textY
-            const isInAlexYRange = Math.abs(pos.y - alexY) < 150;
-            const isAlexLetter = isAlexLetterWall && isInAlexYRange;
+            // Also check Y position - AMANDA letters should be around textY
+            const isInAmandaYRange = Math.abs(pos.y - amandaY) < 150;
+            const isAmandaLetter = isAmandaLetterWall && isInAmandaYRange;
 
-            // For ALEX area: only allow ALEX letter walls, reject all others
-            const alexCenterX = this.cameras.main.centerX;
-            const alexCenterY = screenCenterY - 200;
-            const alexDistance = Phaser.Math.Distance.Between(pos.x, pos.y, alexCenterX, alexCenterY);
-            const alexProtectionRadius = 400; // Same as in isInProtectedArea
+            // For AMANDA area: only allow AMANDA letter walls, reject all others
+            const amandaCenterX = this.cameras.main.centerX;
+            const amandaCenterY = screenCenterY - 200;
+            const amandaDistance = Phaser.Math.Distance.Between(pos.x, pos.y, amandaCenterX, amandaCenterY);
+            const amandaProtectionRadius = 400; // Same as in isInProtectedArea
 
-            if (alexDistance < alexProtectionRadius) {
-                // In ALEX area: only allow actual ALEX letter walls
-                return isAlexLetter;
+            if (amandaDistance < amandaProtectionRadius) {
+                // In AMANDA area: only allow actual AMANDA letter walls
+                return isAmandaLetter;
             }
 
-            // Outside ALEX area: apply normal protection rules
+            // Outside AMANDA area: apply normal protection rules
             return !this.isInProtectedArea(pos.x, pos.y);
         });
 
@@ -1012,13 +1027,13 @@ export class GameScene extends Phaser.Scene {
         return true;
     }
 
-    // Check if position is in protected area (player spawn area or ALEX letters area)
+    // Check if position is in protected area (player spawn area or AMANDA letters area)
     isInProtectedArea(x, y, protectionRadius = 250) {
         // Use the same coordinates as used in generateEnvironmentPositions
         const screenCenterX = this.cameras.main.centerX;
         const screenCenterY = this.cameras.main.centerY;
 
-        // Protect player spawn area (screen center and below ALEX) - larger areas
+        // Protect player spawn area (screen center and below AMANDA) - larger areas
         const playerAreas = [
             { x: screenCenterX, y: screenCenterY, radius: protectionRadius },
             { x: screenCenterX, y: screenCenterY + 200, radius: protectionRadius },
@@ -1027,10 +1042,10 @@ export class GameScene extends Phaser.Scene {
             { x: screenCenterX + 150, y: screenCenterY + 200, radius: protectionRadius * 0.7 }
         ];
 
-        // Protect ALEX letters area (above screen center) - much larger protection
-        const alexCenterX = screenCenterX;
-        const alexCenterY = screenCenterY - 200;
-        const alexArea = { x: alexCenterX, y: alexCenterY, radius: protectionRadius + 150 }; // Much larger protection for ALEX
+        // Protect AMANDA letters area (above screen center) - much larger protection
+        const amandaCenterX = screenCenterX;
+        const amandaCenterY = screenCenterY - 200;
+        const amandaArea = { x: amandaCenterX, y: amandaCenterY, radius: protectionRadius + 150 }; // Much larger protection for AMANDA
 
         // Check against player areas
         for (let area of playerAreas) {
@@ -1040,9 +1055,9 @@ export class GameScene extends Phaser.Scene {
             }
         }
 
-        // Check against ALEX area
-        const alexDistance = Phaser.Math.Distance.Between(x, y, alexArea.x, alexArea.y);
-        if (alexDistance < alexArea.radius) {
+        // Check against AMANDA area
+        const amandaDistance = Phaser.Math.Distance.Between(x, y, amandaArea.x, amandaArea.y);
+        if (amandaDistance < amandaArea.radius) {
             return true;
         }
 
@@ -1099,7 +1114,7 @@ export class GameScene extends Phaser.Scene {
         const preferredPositions = [
             // Screen center
             { x: screenCenterX, y: screenCenterY },
-            // Below ALEX letters (center + 250px down)
+            // Below AMANDA letters (center + 250px down)
             { x: screenCenterX, y: screenCenterY + 250 },
             // Left of center
             { x: screenCenterX - 200, y: screenCenterY },
@@ -1150,13 +1165,13 @@ export class GameScene extends Phaser.Scene {
             }
         }
 
-        // Fallback: spawn below ALEX letters, should usually be safe
+        // Fallback: spawn below AMANDA letters, should usually be safe
         const fallbackX = screenCenterX;
         const fallbackY = screenCenterY + 300;
         const clampedFallbackX = this.playerBounds ? Phaser.Math.Clamp(fallbackX, this.playerBounds.minX, this.playerBounds.maxX) : fallbackX;
         const clampedFallbackY = this.playerBounds ? Phaser.Math.Clamp(fallbackY, this.playerBounds.minY, this.playerBounds.maxY) : fallbackY;
 
-        console.warn(`Could not find safe spawn position, using fallback below ALEX: (${clampedFallbackX}, ${clampedFallbackY})`);
+        console.warn(`Could not find safe spawn position, using fallback below AMANDA: (${clampedFallbackX}, ${clampedFallbackY})`);
         return { x: clampedFallbackX, y: clampedFallbackY };
     }
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = "noemi-app-v3";
+const CACHE_NAME = "amanda-app-v4";
 const APP_SHELL = [
   "./",
   "./index.html",
