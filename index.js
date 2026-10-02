@@ -1990,7 +1990,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     // Ajustar tamanho dos botões conforme escala
-                    [jornalButton, baleiaButton].forEach(btn => {
+                    [jornalButton].forEach(btn => {
                         btn.style.transform = `scale(${scale}) skew(-10deg)`;
                         btn.style.pointerEvents = 'auto';
                     });
@@ -2202,100 +2202,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     z-index: 1;
                 `;
 
-                // Criar botão BALEIA
-                const baleiaButton = document.createElement('button');
-                baleiaButton.id = 'baleiaButton';
-                baleiaButton.textContent = 'BALEIA';
-                baleiaButton.style.cssText = `
-                    width: 184px;
-                    height: 48px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 1rem;
-                    font-size: 1.125em;
-                    font-weight: 800;
-                    letter-spacing: 2px;
-                    color: #fff;
-                    background: linear-gradient(45deg, #ff69b4, #ff1493);
-                    border: 2px solid #ff1493;
-                    border-radius: .75rem;
-                    box-shadow: 0 8px 0 #ff1493;
-                    transform: skew(-10deg);
-                    filter: drop-shadow(0 10px 10px #ff0095);
-                    transition: all .1s ease;
-                    font-family: 'Evil Empire', sans-serif;
-                    z-index: 1;
-                `;
-                baleiaButton.addEventListener('click', () => {
-                    const overlay = document.createElement('div');
-                    overlay.id = 'baleiaVideoOverlay';
-                    overlay.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(0,0,0,0.95);
-                        z-index: 10050;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    `;
-
-                    const video = document.createElement('video');
-                    video.src = 'ui/baleiasom.mp4';
-                    video.controls = true;
-                    video.autoplay = true;
-                    video.style.cssText = `
-                        max-width: 90%;
-                        max-height: 90%;
-                        border-radius: 12px;
-                        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-                    `;
-
-                    const closeBtn = document.createElement('button');
-                    closeBtn.textContent = '×';
-                    closeBtn.style.cssText = `
-                        position: absolute;
-                        top: 20px;
-                        right: 20px;
-                        width: 48px;
-                        height: 48px;
-                        font-size: 32px;
-                        color: #fff;
-                        background: rgba(0,0,0,0.5);
-                        border: 2px solid rgba(255,255,255,0.5);
-                        border-radius: 50%;
-                        cursor: pointer;
-                        z-index: 10060;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    `;
-
-                    function closeOverlay() {
-                        video.pause();
-                        overlay.remove();
-                        document.body.style.overflow = '';
-                        // Re-exibir o player de música se necessário (opcional)
-                        // const audioPlayer = document.getElementById('globalAudioPlayer');
-                        // if (audioPlayer) audioPlayer.style.display = 'block';
-                    }
-
-                    closeBtn.addEventListener('click', closeOverlay);
-                    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeOverlay(); });
-                    
-                    // Esconder player global de música ao abrir vídeo
-                    const audioPlayer = document.getElementById('globalAudioPlayer');
-                    if (audioPlayer) audioPlayer.style.display = 'none';
-
-                    overlay.appendChild(video);
-                    overlay.appendChild(closeBtn);
-                    document.body.appendChild(overlay);
-                    document.body.style.overflow = 'hidden';
-                });
-
                 const layoutJornalOverlay = (overlayEl, frameEl, closeBtnEl) => {
                     if (!overlayEl || !frameEl || !closeBtnEl) return;
                     const mobileLandscape = window.matchMedia('(max-width: 1024px) and (orientation: landscape)').matches;
@@ -2419,7 +2325,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // Adicionar efeito de clique a todos os botões
-                [jornalButton, baleiaButton].forEach(button => {
+                [jornalButton].forEach(button => {
                     button.addEventListener('mousedown', () => {
                         button.style.letterSpacing = '0px';
                         const currentTransform = button.style.transform;
@@ -2436,9 +2342,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
 
-                // Adicionar os botões à barra (JORNAL em cima, BALEIA em baixo)
+                // Adicionar os botões à barra (só o JORNAL)
                 buttonsBar.appendChild(jornalButton);
-                buttonsBar.appendChild(baleiaButton);
                 
                 document.body.appendChild(buttonsBar);
                 positionButtonsBar();
