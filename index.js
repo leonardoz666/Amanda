@@ -1603,6 +1603,10 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(memoryGame);
 
             // ===================== PERSONAGEM LADO DOS CARDS =====================
+            // Largura "desejada" da Karen. O tamanho final e' calculado em
+            // positionKaren() para que a boneca inteira caiba na tela.
+            let karenBaseWidth = 400;
+
             const karenImg = document.createElement('img');
             karenImg.src = 'ui/karen.png';
             karenImg.alt = 'Karen';
@@ -1635,12 +1639,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 const rect = memoryGame.getBoundingClientRect();
                 const midY = rect.top + rect.height / 2;
                 const mobileLandscape = window.matchMedia('(max-width: 1024px) and (orientation: landscape)').matches;
+
+                // A imagem e' alta e estreita (proporcao natural preservada), entao em vez
+                // de fixar a largura e deixar a altura estourar a tela, derivamos a
+                // largura maxima que ainda faz a boneca inteira caber na altura util.
+                const verticalMargin = 24;
+                const natW = karenImg.naturalWidth || 448;
+                const natH = karenImg.naturalHeight || 1536;
+                const aspect = natW / natH; // largura / altura
+                const maxH = Math.max(140, window.innerHeight - verticalMargin * 2);
+                const finalW = Math.min(karenBaseWidth, maxH * aspect);
+                karenImg.style.width = finalW + 'px';
+                const imgH = finalW / aspect;
+
                 // Fixa no canto direito com margem
                 karenImg.style.left = 'auto';
                 karenImg.style.right = mobileLandscape ? '-18px' : '-60px';
-                const box = karenImg.getBoundingClientRect();
-                const imgH = box.height || (karenImg.naturalHeight || 400);
-                const verticalMargin = 24;
                 const top = Math.max(verticalMargin, Math.min(window.innerHeight - imgH - verticalMargin, midY - imgH / 2));
                 karenImg.style.top = top + 'px';
 
@@ -1677,7 +1691,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (heartEl) heartEl.style.fontSize = '28px';
                     });
 
-                    karenImg.style.width = '195px';
+                    karenBaseWidth = 195;
                 } else {
                     topText.style.fontSize = '24px';
                     topText.style.lineHeight = '1.5';
@@ -1698,7 +1712,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (heartEl) heartEl.style.fontSize = '50px';
                     });
 
-                    karenImg.style.width = '400px';
+                    karenBaseWidth = 400;
                 }
             };
 
