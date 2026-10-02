@@ -1,0 +1,16 @@
+# Configuracoes pessoais de editor
+.vscode/
+.idea/
+
+# Metadados de ferramentas locais
+.freebuff/
+
+# Sistema operacional
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Temporarios / logs
+*.log
+npm-debug.log*
+.cache/

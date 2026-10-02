@@ -1,0 +1,176 @@
+/* Jornal — CSS válido (plain CSS), responsivo inclusive landscape mobile */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #111;
+  color: #fff;
+}
+
+.wrapper {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.left-container {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 28px 18px;
+  border-radius: 14px;
+}
+
+.right-container {
+  background-color: #ece8e3;
+  color: #111;
+  padding: 18px;
+  margin-top: 14px;
+  border-radius: 14px;
+}
+
+.heading {
+  font-family: Lora, Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 4vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  line-height: 1.15;
+}
+
+.intro {
+  line-height: 1.45;
+  font-size: clamp(0.95rem, 2.6vw, 1.15rem);
+  font-family: Lora, Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #ddd;
+  margin: 12px auto 0;
+  max-width: 52ch;
+}
+
+.featured-image {
+  float: none;
+  text-align: center;
+  padding-top: 0;
+  margin: 0 auto 14px;
+}
+
+.featured-image img {
+  width: min(520px, 100%);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.content {
+  margin-top: 8px;
+  font-family: Lora, Georgia, "Times New Roman", serif;
+  font-size: clamp(0.92rem, 2.4vw, 1rem);
+  text-align: justify;
+  hyphens: auto;
+}
+
+.content p {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.content p:first-of-type::first-letter {
+  font-size: clamp(2.4rem, 7vw, 3.6rem);
+  font-weight: 700;
+  float: left;
+  margin: -6px 8px 0 0;
+  line-height: 0.85;
+}
+
+.lead {
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.indent {
+  text-indent: 1.25em;
+}
+
+.pagination {
+  margin: 14px 0 0;
+  padding-left: 0;
+  text-align: right;
+  font-size: 0.85em;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* Tablet/desktop: duas colunas */
+@media (min-width: 900px) {
+  .wrapper {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+    padding: 22px;
+  }
+
+  .left-container,
+  .right-container {
+    flex: 1;
+    margin-top: 0;
+  }
+
+  .right-container .content {
+    column-count: 2;
+    column-gap: 1.5em;
+  }
+}
+
+/* Celular virado: layout em duas colunas com altura reduzida */
+@media (max-width: 1024px) and (orientation: landscape) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: minmax(220px, 40%) minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    padding: 12px;
+  }
+
+  .left-container {
+    padding: 16px 12px;
+    position: sticky;
+    top: 0;
+  }
+
+  .right-container {
+    margin-top: 0;
+    padding: 14px;
+  }
+
+  .featured-image img {
+    width: min(360px, 100%);
+  }
+
+  .heading {
+    letter-spacing: 0.08em;
+  }
+
+  .content {
+    font-size: clamp(0.85rem, 2.1vw, 0.95rem);
+  }
+
+  .right-container .content {
+    column-count: 1;
+  }
+}
