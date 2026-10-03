@@ -549,3 +549,25 @@ video::-webkit-media-controls-play-button {
 .memory-card-front > div {
     display: none !important;
 }
+
+/* Botão JORNAL - Estilo Vermelho e Preto dos Cards */
+#jornalButton {
+    background: linear-gradient(135deg, #b8141b, #4a0408) !important;
+    border: 2px solid #8b0000 !important;
+    box-shadow: 0 8px 0 #2b0204 !important;
+    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 16px rgba(196, 21, 28, 0.7)) !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9) !important;
+}
+
+#jornalButton:hover {
+    filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 24px rgba(255, 30, 45, 0.95)) !important;
+}
+
+/* Aura Vermelha e Preta da Karen */
+#karenCharacter {
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 16px rgba(196, 21, 28, 0.65)) !important;
+}
+
+#karenCharacter:hover {
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 30px rgba(255, 30, 45, 0.95)) !important;
+}

@@ -1649,7 +1649,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 object-fit: contain;
                 pointer-events: none;
                 z-index: 1200;
-                filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+                filter: drop-shadow(0 10px 18px rgba(0,0,0,.85)) drop-shadow(0 0 16px rgba(196, 21, 28, 0.65));
                 animation: karenFloat 3s ease-in-out infinite, karenGlow 2s ease-in-out infinite alternate;
                 transition: transform 0.3s ease, filter 0.3s ease;
             `;
@@ -1783,16 +1783,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 @keyframes karenGlow {
                     0% { 
-                        filter: drop-shadow(0 10px 18px rgba(0,0,0,.35)) drop-shadow(0 0 10px rgba(255, 20, 147, 0.3));
+                        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 12px rgba(196, 21, 28, 0.5));
                     }
                     100% { 
-                        filter: drop-shadow(0 10px 18px rgba(0,0,0,.35)) drop-shadow(0 0 20px rgba(255, 20, 147, 0.6)) drop-shadow(0 0 30px rgba(255, 105, 180, 0.4));
+                        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 24px rgba(220, 20, 30, 0.85)) drop-shadow(0 0 38px rgba(139, 0, 0, 0.65));
                     }
                 }
                 
                 #karenCharacter:hover {
                     transform: scale(1.05) !important;
-                    filter: drop-shadow(0 15px 25px rgba(0,0,0,.5)) drop-shadow(0 0 25px rgba(255, 20, 147, 0.8)) !important;
+                    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 30px rgba(255, 30, 45, 0.95)) !important;
                     animation-play-state: paused !important;
                 }
                 
@@ -2252,16 +2252,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     font-size: 1.125em;
                     font-weight: 800;
                     letter-spacing: 2px;
-                    color: #fff;
-                    background: linear-gradient(45deg, #ff69b4, #ff1493);
-                    border: 2px solid #ff1493;
+                    color: #ffffff;
+                    background: linear-gradient(135deg, #b8141b, #4a0408);
+                    border: 2px solid #8b0000;
                     border-radius: .75rem;
-                    box-shadow: 0 8px 0 #ff1493;
+                    box-shadow: 0 8px 0 #2b0204;
                     transform: skew(-10deg);
-                    filter: drop-shadow(0 10px 10px #ff0095);
+                    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 16px rgba(196, 21, 28, 0.7));
                     transition: all .1s ease;
                     font-family: 'Evil Empire', sans-serif;
                     z-index: 1;
+                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
                 `;
 
                 const layoutJornalOverlay = (overlayEl, frameEl, closeBtnEl) => {
@@ -2394,13 +2395,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!currentTransform.includes('translateY')) {
                             button.style.transform = `${currentTransform} translateY(8px)`;
                         }
-                        button.style.boxShadow = '0 0 0 #654dff63';
+                        button.style.boxShadow = '0 0 0 #1a0002';
                     });
 
                     button.addEventListener('mouseup', () => {
                         button.style.letterSpacing = '2px';
                         button.style.transform = button.style.transform.replace(/translateY\([^)]+\)/, '').trim();
-                        button.style.boxShadow = '0 8px 0 #ff1493';
+                        button.style.boxShadow = '0 8px 0 #2b0204';
                     });
                 });
 
