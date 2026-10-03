@@ -1,11 +1,15 @@
-const CACHE_NAME = "amanda-app-v4";
+const CACHE_NAME = "amanda-app-v8";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./style.css",
   "./index.js",
   "./manifest.webmanifest",
-  "./ui/Botao.png"
+  "./ui/Botao.png",
+  "./ui/carta_verso.png",
+  "./background/background.html",
+  "./background/bonsai.html",
+  "./background/bonsai.jpg"
 ];
 
 self.addEventListener("install", (event) => {

@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 z-index: 0;
                 pointer-events: none;
                 visibility: hidden;
+                opacity: 1;
+                transition: opacity 1.2s ease-in-out;
             `;
             // Quando o iframe terminar de carregar, garanta estado adequado por dispositivo.
             bg.addEventListener('load', () => {
@@ -67,6 +69,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 } catch (_) { /* noop */ }
             });
             document.body.prepend(bg);
+        }
+
+        // Background animado de Bonsai para a tela do jogo da memória
+        if (!document.getElementById('bonsaiBackground')) {
+            const bonsaiBg = document.createElement('iframe');
+            bonsaiBg.id = 'bonsaiBackground';
+            bonsaiBg.src = 'background/bonsai.html';
+            bonsaiBg.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+                z-index: 0;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 1.2s ease-in-out;
+                visibility: hidden;
+            `;
+            document.body.prepend(bonsaiBg);
         }
     })();
 
@@ -335,6 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const bgFrameEarly = document.getElementById('siteBackground');
         if (bgFrameEarly) {
             bgFrameEarly.style.visibility = 'visible';
+            bgFrameEarly.style.opacity = '1';
             try {
                 const idoc = bgFrameEarly.contentDocument || bgFrameEarly.contentWindow?.document;
                 const cont = idoc?.querySelector('.container');
@@ -1100,9 +1124,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2500);
 
         mainContent.initialize();
-        // Exibir o background global após concluir o login/fluxo inicial
+        // Ativar o background animado de bonsai no jogo da memória e esmaecer o de flores antigo
+        const bonsaiBg = document.getElementById('bonsaiBackground');
+        if (bonsaiBg) {
+            bonsaiBg.style.visibility = 'visible';
+            bonsaiBg.style.opacity = '1';
+        }
         const bg = document.getElementById('siteBackground');
-        if (bg) bg.style.visibility = 'visible';
+        if (bg) {
+            bg.style.opacity = '0';
+            setTimeout(() => {
+                if (bg) bg.style.visibility = 'hidden';
+            }, 1200);
+        }
         const staticBg = document.getElementById('staticBgLayer');
         if (staticBg) staticBg.style.display = 'none';
     };

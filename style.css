@@ -533,3 +533,19 @@ video::-webkit-media-controls-panel {
 video::-webkit-media-controls-play-button {
     display: none !important;
 }
+
+/* Fundo das cartas do jogo da memória */
+.memory-card {
+    background: transparent !important;
+}
+
+.memory-card > div:first-child,
+.memory-card-front {
+    background: url('ui/carta_verso.png') center / cover no-repeat !important;
+    background-color: transparent !important;
+}
+
+.memory-card > div:first-child > div,
+.memory-card-front > div {
+    display: none !important;
+}

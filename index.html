@@ -17,8 +17,8 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css" />
-    <script src="index.js"></script>
+    <link rel="stylesheet" href="style.css?v=5" />
+    <script src="index.js?v=5"></script>
     <style>
         body {
             cursor: url('ui/pink.cur'), auto;
@@ -53,6 +53,18 @@
 
         .memory-card {
             cursor: url('ui/pink2.cur'), pointer !important;
+            background: transparent !important;
+        }
+
+        .memory-card > div:first-child,
+        .memory-card-front {
+            background: url('ui/carta_verso.png') center / cover no-repeat !important;
+            background-color: transparent !important;
+        }
+
+        .memory-card > div:first-child > div,
+        .memory-card-front > div {
+            display: none !important;
         }
 
         /* Forçar cursor em todos os estados do input */
@@ -105,7 +117,9 @@
 <script>
     if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
-            navigator.serviceWorker.register("./sw.js").catch((error) => {
+            navigator.serviceWorker.register("./sw.js").then((reg) => {
+                reg.update();
+            }).catch((error) => {
                 console.error("Falha ao registrar service worker:", error);
             });
         });
